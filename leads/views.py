@@ -24,7 +24,7 @@ class LeadListView(LoginRequiredMixin,generic.ListView):
   queryset = Lead.objects.all()
   context_object_name = "leads"
 
-class LeadDetailView(LoginRequiredMixin,generic.DeleteView):
+class LeadDetailView(LoginRequiredMixin,generic.DetailView):
   template_name = "leads/lead-detail.html"
   queryset=Lead.objects.all()
   context_object_name ="lead"

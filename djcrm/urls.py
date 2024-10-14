@@ -22,7 +22,8 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
 
    
-    path('leads/',include('leads.urls',namespace='leads')),
+    path('leads/',include('leads.urls',namespace='leads')),    # urls file in the leads app
+    path('agents/',include('agents.urls',namespace='agents')), # urls file in the agents app
 ]
 
 if settings.DEBUG :
