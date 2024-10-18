@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+  <h1> Select and Agent</h1>
+  <hr>
+  
+  <form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit"> Set the Agent</button>
+  </form>
+
+{% endblock content %}
+  
