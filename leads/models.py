@@ -22,6 +22,7 @@ class Lead(models.Model):
   # here going to change the above line to as follows for the filtering purpose
   organization = models.ForeignKey(UserProfile,on_delete=models.CASCADE)
   agent = models.ForeignKey("Agent",null=True,blank=True,on_delete=models.SET_NULL)
+  category = models.ForeignKey("Category",null=True,blank=True,on_delete=models.SET_NULL,related_name="leads") #the related name helps to get Lead details within the category(revese relationship)
 
 
   def __str__(self):
@@ -34,6 +35,33 @@ class Agent(models.Model):
 
   def __str__(self):
     return self.user.username
+  
+
+
+class Category(models.Model):
+  name = models.CharField(max_length=30)
+  organization = models.ForeignKey(UserProfile,on_delete=models.CASCADE)
+
+  def __str__(self):
+    return self.name
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #we use post save to Automatically create UserProfile for each User when a User is Created
 def post_user_created(sender,instance,created, **kwargs): #this method will be called when the post_save signal implements

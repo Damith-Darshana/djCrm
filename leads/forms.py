@@ -41,3 +41,13 @@ class AssignAgentForm(forms.Form):
       agents = Agent.objects.filter(organization = request.user.userprofile)  # here we get those agents belongs to the same organization that the lead belongs 
       super(AssignAgentForm, self).__init__(*args, **kwargs) 
       self.fields["agent"].queryset = agents  # assign the query set here and now it will be this instead of none as above 
+
+
+
+class LeadCategoryUpdateForm(forms.ModelForm):
+  class Meta:
+    model = Lead
+    fields = (
+      'category',
+    )
+

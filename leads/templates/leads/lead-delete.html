@@ -8,6 +8,18 @@
 
 {% block content %}
 
-
-{% endblock content %}
+<form action="" method="post">
+  {% csrf_token %}
+  <div class=" container h-56 flex flex-col items-center justify-center  bg-white
+  mx-auto mt-36
+  w-2/4 rounded-xl shadow-2xl shadow-black shadow 
+  ">
+    <span class=" text-[20px] ">Are You Sure You want to Delete The Lead ?</span>
+    <div class="flex flex-row gap-3">
+    <a class=" ml-3 mt-3 bg-gray-100 text-red-500 font-semibold border-0 py-2 px-3 focus:outline-none hover:bg-red-400 hover:text-white rounded" href="{% url 'leads:lead-detail' lead.pk %}" >No, Don't Delete</a>
+    <input class=" ml-3 mt-3 text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded" type="submit" value="Yes, Delete"/>
+    </div>
+  </div>
   
+</form>
+{% endblock content %}

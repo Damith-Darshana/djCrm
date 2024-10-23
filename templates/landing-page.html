@@ -1,23 +1,323 @@
 {% extends 'base.html' %}
+{% load static %}
+
+  <!-- credit: https://github.com/codebushi/gatsby-starter-lander -->
+
 
 
 {% block content %}
-  <section class="text-gray-600 body-font">
-    <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
-      <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero" src="https://dummyimage.com/720x600">
-      <div class="text-center lg:w-2/3 w-full">
-        <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
-          CRM built with Django
-        </h1>
-        <p class="mb-8 leading-relaxed">
-        This crm helps you manage your Leads
-        </p>
-        <div class="flex justify-center">
-          <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Button</button>
-          <button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Button</button>
-        </div>
+  
+
+<div>
+
+
+  <header class="sticky top-0 bg-white shadow">
+      <div class="container flex flex-col sm:flex-row justify-between items-center mx-auto py-4 px-8">
+          <div class="flex items-center text-2xl">
+              <div class="w-12 mr-3">
+                  <img src="{% static 'img/page-icon.svg' %}" alt="">
+              </div>Client Link
+          </div>
+          <div class="flex mt-4 gap-x-8 text-lg sm:mt-0">
+              <a class="nav-link border-b- border-purple-500 text-gray-500  hover:text-purple-800  " href="#features">Features</a>
+              <a class="nav-link text-gray-500  hover:text-purple-800  " href="#services">Services</a>
+              <a class="nav-link text-gray-500  hover:text-purple-800  " href="#stats">Stats</a>
+              <a class="nav-link text-gray-500  hover:text-purple-800  " href="#testimonials">Testimonials</a>
+          </div>
+          <div class="hidden md:block">
+            <a type="button" href=" {% url 'sign' %} " 
+            class=" py-3 px-6 text-sm   hover:border-purple-700 hover:border-2 rounded-md text-purple-700 mr-3 hover:font-semibold tracking-wider ">
+            SignUp
+          </a>
+              <a type="button" href="{% url 'login' %}"
+                  class=" py-3 px-6 text-sm  bg-purple-500 hover:bg-purple-700 rounded-md text-white tracking-wider ">
+                  login <img src="{% static 'img/right-arrow.svg' %}" class="w-5 inline-flex" alt="">
+        </a>
+          </div>
       </div>
-    </div>
-  </section>
+  </header>
+
+  <main class="text-gray-900">
+
+
+      <section class="pt-10 md:pt-10">
+          <div class="container mx-auto px-8 lg:flex items-center">
+              <div class="text-center lg:text-left lg:w-1/2">
+                <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl p-6 pl-0">
+                    <span class="block">
+                        Simplify  
+                        <span class="text-transparent bg-clip-text bg-gradient-to-tr to-purple-500 from-purple-600">
+                            Client Relationships
+                        </span>
+                        with Powerful CRM Tools
+                    </span>
+                </h1>
+                  <p class="text-xl lg:text-2xl mt-6 font-light">Gain Control, Capture Every Opportunity, and Stay Ahead of the Competition
+                  </p>
+                  <p class="mt-8 md:mt-12">
+                      <button type="button"
+                          class=" py-4 px-12 bg-purple-600 hover:bg-purple-700 rounded text-white">Get Started</button>
+                  </p>
+                  <p class="mt-4 text-gray-600">Sed fermentum felis ut cursu
+                  </p>
+              </div>
+
+              <div class="lg:w-1/2">
+               <!-- image here -->
+                <img src=" {% static 'img/crm-landing.jpg' %} " alt="">
+              </div>
+          </div>
+      </section>
+
+
+      <section id="features" class="py-20 lg:pb-40 lg:pt-48">
+          <div class="container mx-auto text-center">
+              <h2 class="text-3xl lg:text-5xl font-semibold">Main Features</h2>
+              <div class="flex flex-col sm:flex-row sm:-mx-3 mt-12">
+                  <div class="flex-1 px-3">
+                      <div class="p-12 rounded-lg border border-solid border-gray-200 mb-8 border-l-4 border-l-purple-500"
+                          style="box-shadow:0 10px 28px rgba(0,0,0,.08)">
+                          <img src="{% static 'img/contact-management.svg' %}" class="w-16 mx-auto" alt="">
+                          <p class="font-semibold text-xl">Contact Management
+
+                          </p>
+                          <p class="mt-4">Organize and access all your client information in one place. Manage interactions, track communication history, and stay on top of every relationship.
+                          </p>
+                      </div>
+                  </div>
+                  <div class="flex-1 px-3">
+                      <div class="p-12 rounded-lg border border-solid border-gray-200 mb-8"
+                          style="box-shadow:0 10px 28px rgba(0,0,0,.08)">
+                          <img src="{% static 'img/automation.svg' %}" class="w-16 mx-auto"  alt="">
+                          <p class="font-semibold text-xl">Task Automation
+                          </p>
+                          <p class="mt-4">Automate repetitive tasks such as follow-up emails, appointment reminders, and workflow assignments, saving you time and boosting efficiency.
+                          </p>
+                      </div>
+                  </div>
+                  <div class="flex-1 px-3">
+                      <div class="p-12 rounded-lg border border-solid border-gray-200 mb-8"
+                          style="box-shadow:0 10px 28px rgba(0,0,0,.08)">
+                          <img src="{% static 'img/analytic-section.svg' %} " class="w-16 mx-auto " alt="">
+                          <p class="font-semibold text-xl">Analytic & Reporting
+
+                          </p>
+                          <p class="mt-4">Get insights into your business performance with real-time data analytics. Track sales, monitor team productivity, and generate detailed reports.
+                          </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+
+
+      <section id="services" class="py-20">
+          <div class="container mx-auto px-16 items-center flex flex-col lg:flex-row">
+              <div class="lg:w-1/2">
+                  <div class="lg:pr-32 xl:pr-48">
+                      <h3 class="text-3xl font-semibold leading-tight">Market Analysis</h3>
+                      <p class="mt-8 text-xl font-light leading-relaxed">Our team of enthusiastic marketers
+                          will analyse and evaluate how your company stacks against the closest competitors
+                      </p>
+                  </div>
+              </div>
+              <div class="mt-10 lg:mt-0 w-full lg:w-1/2 undefined">
+                 <!-- image here -->
+                  <img src="{% static 'img/market-analysis-section.jpg' %}" alt="">
+              </div>
+          </div>
+      </section>
+
+
+
+      <section class="py-20">
+          <div class="container mx-auto px-16 items-center flex flex-col lg:flex-row">
+              <div class="lg:w-1/2">
+                  <div class="lg:pl-32 xl:pl-48">
+                      <h3 class="text-3xl font-semibold leading-tight">Design And Plan Your Business Growth
+                          Steps</h3>
+                      <p class="mt-8 text-xl font-light leading-relaxed">Once the market analysis process is
+                          completed our staff will search for opportunities that are in reach
+                      </p>
+                  </div>
+              </div>
+              <div class="mt-10 lg:mt-0 w-full lg:w-1/2 order-last lg:order-first">
+                <!-- img here -->
+                 <img src="{% static 'img/buisness-growth.png' %}" alt="">
+              </div>
+          </div>
+      </section>
+
+
+      <section class="py-20">
+          <div class="container mx-auto px-16 items-center flex flex-col lg:flex-row">
+              <div class="lg:w-1/2">
+                  <div class="lg:pr-32 xl:pr-48">
+                      <h3 class="text-3xl font-semibold leading-tight">Search For Performance Optimization
+                      </h3>
+                      <p class="mt-8 text-xl font-light leading-relaxed">With all the information in place you
+                          will be presented with an action plan that your company needs to follow
+                      </p>
+                  </div>
+              </div>
+              <div class="mt-10 lg:mt-0 w-full lg:w-1/2 undefined">
+                 <img src="{% static 'img/web-design-agency.png' %}" alt="">
+              </div>
+          </div>
+      </section>
+
+
+      <section id="stats" class="py-20 lg:pt-32">
+          <div class="container mx-auto text-center">
+              <p class="uppercase tracking-wider text-gray-600">Our customers get results
+
+              </p>
+              <div class="flex flex-col sm:flex-row mt-8 lg:px-24">
+                  <div class="w-full sm:w-1/3">
+                      <p class="text-4xl lg:text-6xl font-semibold text-purple-500">+100%
+                      </p>
+                      <p class="font-semibold mb-6">Stats Information
+                      </p>
+                  </div>
+                  <div class="w-full sm:w-1/3">
+                      <p class="text-4xl lg:text-6xl font-semibold text-purple-500">+100%
+                      </p>
+                      <p class="font-semibold mb-6">Stats Information
+                      </p>
+                  </div>
+                  <div class="w-full sm:w-1/3">
+                      <p class="text-4xl lg:text-6xl font-semibold text-purple-500">+100%
+                      </p>
+                      <p class="font-semibold mb-6">Stats Information
+                      </p>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+
+
+      <section id="testimonials" class="py-20 lg:py-40">
+          <div class="container mx-auto">
+              <p class="uppercase tracking-wider mb-8 text-gray-600 text-center">What customers are saying
+              </p>
+              <div class="flex flex-col md:flex-row md:-mx-3">
+                  <div class="flex-1 px-3">
+                      <div class="p-12 rounded-lg border border-solid border-gray-200 mb-8"
+                          style="box-shadow:0 10px 28px rgba(0,0,0,.08)">
+                          <p class="text-xl font-semibold">Lorem ipsum dolor sit amet, consectetur adipiscing
+
+                          </p>
+                          <p class="mt-6">Eu lobortis elementum nibh tellus molestie nunc non blandit massa.
+                              Sit amet consectetur adipiscing elit duis.
+                          </p>
+                          <div class="flex items-center mt-8"><img class="w-12 h-12 mr-4 rounded-full object-cover"
+                                  src="img/dp2.jpg" alt="Jane Doe">
+                              <div>
+                                  <p>Jane Doe
+                                  </p>
+                                  <p class="text-sm text-gray-600">Director of Research and Data
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="flex-1 px-3">
+                      <div class="p-12 rounded-lg border border-solid border-gray-200 mb-8"
+                          style="box-shadow:0 10px 28px rgba(0,0,0,.08)">
+                          <p class="text-xl font-semibold">Lorem ipsum dolor sit amet, consectetur adipiscing
+
+                          </p>
+                          <p class="mt-6">Eu lobortis elementum nibh tellus molestie nunc non blandit massa.
+                              Sit amet consectetur adipiscing elit duis.
+                          </p>
+                          <div class="flex items-center mt-8"><img class="w-12 h-12 mr-4 rounded-full object-cover "
+                                  src="img/dp1.jpg" alt="John Doe">
+                              <div>
+                                  <p>John Doe
+                                  </p>
+                                  <p class="text-sm text-gray-600">Director of Research and Data
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="flex-1 px-3">
+                      <div class="p-12 rounded-lg border border-solid border-gray-200 mb-8"
+                          style="box-shadow:0 10px 28px rgba(0,0,0,.08)">
+                          <p class="text-xl font-semibold">Lorem ipsum dolor sit amet, consectetur adipiscing
+
+                          </p>
+                          <p class="mt-6">Eu lobortis elementum nibh tellus molestie nunc non blandit massa.
+                              Sit amet consectetur adipiscing elit duis.
+                          </p>
+                          <div class="flex items-center mt-8"><img class="w-12 h-12 mr-4 rounded-full object-contain "
+                                  src="img/dp3.jpg" alt="Jane Smith">
+                              <div>
+                                  <p>Jane Smith
+                                  </p>
+                                  <p class="text-sm text-gray-600">Director of Research and Data
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+
+      <section class="container mx-auto my-20 py-24 bg-gray-200 rounded-lg text-center">
+          <h3 class="text-5xl font-semibold">Ready to grow your business?</h3>
+          <p class="mt-8 text-xl font-light">Quis lectus nulla at volutpat diam ut. Enim lobortis scelerisque
+              fermentum dui faucibus in.
+          </p>
+          <p class="mt-8">
+              <button type="button"
+                  class=" py-5 px-16 text-lg bg-purple-500 hover:bg-purple-600 rounded text-white ">Get Started
+                  Now
+              </button>
+          </p>
+      </section>
+
+
+  </main>
+
+
+  <footer class="container mx-auto py-16 px-3 mt-48 mb-8 text-gray-800">
+      <div class="flex -mx-3">
+          <div class="flex-1 px-3">
+              <h2 class="text-lg font-semibold">About Us</h2>
+              <p class="mt-5">Ridiculus mus mauris vitae ultricies leo integer malesuada nunc.
+              </p>
+          </div>
+          <div class="flex-1 px-3">
+              <h2 class="text-lg font-semibold">Important Links</h2>
+              <ul class="mt-4 leading-loose">
+                  <li><a href="https://codebushi.com">Terms &amp; Conditions</a></li>
+                  <li><a href="https://codebushi.com">Privacy Policy</a></li>
+              </ul>
+          </div>
+          <div class="flex-1 px-3">
+              <h2 class="text-lg font-semibold">Social Media</h2>
+              <ul class="mt-4 leading-loose">
+                  <li><a href="https://dev.to/changoman">Dev.to</a></li>
+                  <li><a href="https://twitter.com/HuntaroSan">Twitter</a></li>
+                  <li><a href="https://github.com/codebushi/gatsby-starter-lander">GitHub</a></li>
+              </ul>
+          </div>
+      </div>
+  </footer>
+
+
+</div>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="script.js"></script>
+
+
+
+
 {% endblock content %}
   

@@ -22,3 +22,4 @@ class AgentModelFormNew(forms.ModelForm):
       'last_name',
       'email',
     )
+
