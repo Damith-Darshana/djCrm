@@ -10,7 +10,7 @@ from django.contrib.auth.views import (
   PasswordResetConfirmView,
   PasswordResetCompleteView
   )
-from leads.views import LandingPageView, SignUpView
+from leads.views import LandingPageView, SignUpView ,user_logout
 
 
 from django.conf import settings
@@ -26,7 +26,7 @@ urlpatterns = [
     path('',LandingPageView.as_view(),name='landing'),
     path('signup/', SignUpView.as_view(), name='sign'),
     path('login/', LoginView.as_view(), name='login'),
-    path('logout/', LogoutView.as_view(), name='logout'),
+    path('logout/', user_logout, name='logout'),
 
 
     #password reset urls 

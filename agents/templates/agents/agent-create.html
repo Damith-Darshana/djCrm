@@ -1,20 +1,90 @@
 {% extends 'base.html' %}
 
 
+{% load tailwind_filters %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% block title %} Create an Agent {% endblock title %} 
+
+
 {% block content %}
+ 
 
-<h1>Create a New Agent </h1>
-<form method="POST" action=".">
-{% csrf_token %}
-{{form.as_p }}
-<button type="submit">Send</button>
-</form>
+<div class="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md">
+   
+      
+  </div>
 
-<p class="mt-20 font-semibold"> <a href="{% url 'agents:agent-list' %}"><-- Go Back</a></p>
+  <div class="mt-8  sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="text-2xl py-4 px-6 rounded-t-lg bg-purple-800 text-white text-center font-bold uppercase">
+      Create a New Agent
+  </div>
+      <div class="bg-white py-8 pb-20 px-4 shadow sm:rounded-lg sm:px-10">
+        
+          <form class="space-y-6" action="#" method="POST">
+            {% csrf_token %}
+            <div class="my-4">
+              <label for="{{form.username.id_for_label}}" class="block text-sm font-medium text-gray-700">
+                Username
+              </label>
+              <div class="mt-1">
+                 {{form.username|add_class:" h-12 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"|attr:"placeholder:username"}}
+              </div>
+            </div>
+            <div class="my-4">
+              <label for="{{form.first_name.id_for_label}}" class="block text-sm font-medium text-gray-700">
+                first_name
+              </label>
+              <div class="mt-1">
+                 {{form.first_name|add_class:" h-12 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"|attr:"placeholder:first name"}}
+              </div>
+            </div>
+             <div class="my-4">
+              <label for="{{form.last_name.id_for_label}}" class="block text-sm font-medium text-gray-700">
+                last_name
+              </label>
+              <div class="mt-1">
+                 {{form.last_name|add_class:" h-12 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"|attr:"placeholder:last name"}}
+              </div>
+            </div>
+            <div class="my-4">
+              <label for="{{form.email.id_for_label}}" class="block text-sm font-medium text-gray-700">
+                email
+              </label>
+              <div class="mt-1">
+                 {{form.email|add_class:" h-12 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"|attr:"placeholder:email"}}
+              </div>
+            </div>
+            <div>
+              <button type="submit"
+                  class="group relative w-full flex justify-center mt-10 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+
+                  Create The Agent
+              </button>
+          </div>
+          </form>
+          <div class=" relative text-sm top-6 ">
+            <a href="{% url 'agents:agent-list' %}"
+            class="font-medium text-purple-700 hover:text-purple-500">
+                Go back to Agents
+            </a>
+        </div>
+      </div>
+  </div>
+</div>
+
 
 
   
+
+
+
+
+<script src="https://cdn.tailwindcss.com"></script>
+
 {% endblock content %}
+
 
 
   

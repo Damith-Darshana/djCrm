@@ -1,6 +1,9 @@
 from django import forms
 from .models import Lead,Agent
 
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit,Field,Layout
+
 from django.contrib.auth.forms import UserCreationForm,UsernameField
 from django.contrib.auth import get_user_model
 
@@ -21,7 +24,40 @@ class LeadModelForm(forms.ModelForm):
       'last_name',
       'age',
       'agent',
+      'description',
+      'phone_number',
+      'email',
     )
+  def __init__(self,*args,**kwargs):
+    super().__init__(*args,**kwargs)
+    self.helper = FormHelper()
+    # Apply class to all labels
+    self.fields['first_name'].widget.attrs.update({
+      'class': 'appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm border-l-4 border-l-purple-600',
+      'placeholder': 'First Name',
+      'id':'firstName',
+    
+    })
+  
+    self.fields['last_name'].widget.attrs.update({
+      'class': 'appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm border-l-4 border-l-purple-600',
+      'placeholder': 'Last Name',
+    })
+    
+    self.fields['age'].widget.attrs.update({
+      'class': 'appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm border-l-4 border-l-purple-600',
+      'placeholder': 'Last Name',
+    })
+    self.fields['agent'].widget.attrs.update({
+      'class': 'appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-900 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm border-l-4 border-l-purple-600',
+      
+    })
+
+    self.helper.label_class = "block text-sm font-medium text-purple-500"
+     # Apply class to all labels
+   
+   
+
 
 class LeadForm(forms.Form):
   first_name = forms.CharField()

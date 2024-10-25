@@ -62,7 +62,7 @@ class AgentDetailView(OrganizerAndLoginRequiredMixin,generic.DetailView):
 
 class AgentUpdateView(OrganizerAndLoginRequiredMixin,generic.UpdateView):
   template_name="agents/agent-update.html"
-  form_class = AgentModelForm
+  form_class = AgentModelFormNew
   context_object_name ="agentUpdate"
 
   def get_queryset(self):

@@ -7,11 +7,17 @@ from django.views import generic               # This includes all the CRUD Oper
 from .models import Lead,Category #This is the Lead Model or Table we created in Models.py we use this here to interact with the tabel data
 from .forms import LeadModelForm, CustomUserCreationForm,AssignAgentForm,LeadCategoryUpdateForm  #this includes the Custom Forms or Overridden forms crated within the Forms.py file
 
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin # This Method will check if the Requesting User is Logged in or Not
 from agents.mixins import OrganizerAndLoginRequiredMixin  # This is the My custom created LoginRequired Mixin created within the Agents App 
 # Create your views here.
 
-
+@login_required
+def user_logout(request):
+   """Logs out the user and renders the logged_out template."""
+   logout(request)
+   return render(request,"registration/logged_out.html")
 
 
 
@@ -44,7 +50,12 @@ This view simply renders the `landing-page.html` template.
 """
 class LandingPageView(generic.TemplateView):
   template_name = "landing-page.html"
+  context_object_name = 'leads'
 
+  def get_queryset(self):
+    queryset = Lead.objects.all()
+    return queryset
+  
 
 """
 **LeadListView**

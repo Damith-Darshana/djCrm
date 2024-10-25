@@ -1,85 +1,207 @@
 {% extends 'base.html' %}
   
 {% block title %} HomePage {% endblock title %}  
-
+{% load static %}
 
 
 
 {% block content %}
 
-
+{% include 'navbar.html' %}
 <section class="text-gray-600 body-font">
-<div class="flex justify-between pt-5 px-5">
-  <h1 class="mx-4 text-3xl">Leads</h1>
+    <div class="flex justify-between pt-5 px-5">
+        <h1></h1>
 
  
- {% if request.user.is_organizer %}
-  
-
-  
-  <div>
-  <label for="addLead">Create a New Lead :</label> <a class="text-blue-600" href=" {% url 'leads:lead-create' %} " id="addLead">Click Here</a><hr>
-  <label for="addLead">View Categories :</label> <a class="text-blue-600" href=" {% url 'leads:category-view' %} " id="addLead">Click Here</a><hr>
- </div>
- {% endif %}
+        {% if request.user.is_organizer %}
+   
+        <div class=" flex flex-row items-center  gap-x-1"> 
+            <div class=""><span class="   font-semibold hover:text-purple-600 text-purple-400"><a href="{% url 'leads:lead-create' %}">New Lead</a></span ></div><br>
+            <div class=""><span class=" hover:text-purple-600 border-l-[3px] pl-1 border-purple-600 font-semibold text-purple-400"><a href="{% url 'leads:category-view' %}">view category</a></span ></div><br>
+        
+        </div>
+        {% endif %}
 </div>
 <div class="container px-5 py-6 mx-auto flex flex-wrap">
-  
-  <div class="flex flex-wrap -m-4">
-    {% for lead in leads %}
-    <div class="p-4 lg:w-1/2 md:w-full">
-      <div class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col">
-        <div class="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
-          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-8 h-8" viewBox="0 0 24 24">
-            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-          </svg>
-        </div>
-        <div class="flex-grow">
-          <h2 class="text-gray-900 text-lg title-font font-medium mb-3">
-            {{lead.first_name}} {{lead.last_name}}
-          </h2>
-          <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-          <a href="{% url 'leads:lead-detail' lead.pk %}" class="mt-3 text-indigo-500 inline-flex items-center">
-            View this Lead
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
+  <h1 class=" py-2 text-3xl ">Leads</h1>
+  <table class="min-w-full divide-y divide-purple-200 overflow-x-auto">
+    <thead class="bg-purple-700">
+        <tr>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-50 uppercase tracking-wider">
+               Name
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-50 uppercase tracking-wider">
+                age
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-50 uppercase tracking-wider">
+                Category
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-50 uppercase tracking-wider">
+                agent
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-50 uppercase tracking-wider">
+                Email
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-50 uppercase tracking-wider">
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200">
+      {% for lead in leads %}
+      <tr>
+        <td class="px-6 py-4 whitespace-nowrap">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 h-10 w-10">
+                    <img class="h-10 w-10 rounded-full" src="https://i.pravatar.cc/150?img=1" alt="">
+                </div>
+                <div class="ml-4">
+                    <div class="text-sm font-medium text-gray-900">
+                        {{lead.first_name}} {{lead.last_name}}
+                    </div>
+                    
+                </div>
+            </div>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap ">
+            <div class="text-sm text-gray-900 text-center  ">{{lead.age}}</div>
+            
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+          {% if lead.category|lower == "converted" %}
+            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+              {{lead.category}}
+          {% elif lead.category|lower == 'unconverted' %}
+          <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+            {{lead.category}}
+          
+          {% elif lead.category|lower == 'contacted' %}
+            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+              {{lead.category}}
+
+           {% else %}
+           <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+            {{lead.category}}
+             
+              
+          {% endif %}
+                
+            </span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            {{lead.agent}}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            
+            {% if lead.email %}
+            {{lead.email}}
+            {% else %}
+            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                none</span>
+            {% endif %}
+                
+            
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap  text-sm font-medium">
+            <a href="{% url 'leads:lead-update' lead.pk %}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+            <a href="{% url 'leads:lead-delete' lead.pk %}" class="ml-2 text-red-600 hover:text-red-900">Delete</a>
+        </td>
+    </tr>
+      {% endfor %}
+      
+
+
+
+
+        <!-- More rows... -->
+
+    </tbody>
+</table>
 
     <div class="flex justify-between pt-5 px-0 w-full">
       {% if unassigned_leads.exists %}
-        <h1 class="mx- text-3xl ">Unassigned Leads</h1>
+       
     </div>
 </div>
 <div class="container px-5 py-6 mx-auto flex flex-wrap">
- 
-    {% for lead in unassigned_leads %}
-    <div class="p-4 lg:w-1/2 md:w-full">
-      <div class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col">
-        <div class="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
-          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-8 h-8" viewBox="0 0 24 24">
-            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-          </svg>
-        </div>
-        <div class="flex-grow">
-          <h2 class="text-gray-900 text-lg title-font font-medium mb-3">
-            {{lead.first_name}} {{lead.last_name}}
-          </h2>
-          <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-          <a href="{% url 'leads:assign-agent' lead.pk %}" class="mt-3 text-indigo-500 inline-flex items-center">
-            Assign an Agent
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
+    <h1 class=" py-2 text-3xl ">Unassigned Leads</h1>
+   
+    <table class="min-w-full divide-y divide-purple-300 overflow-x-auto">
+      <thead class="bg-red-400">
+          <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-50 uppercase tracking-wider">
+                 Name
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-50 uppercase tracking-wider">
+                  age
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-50 uppercase tracking-wider">
+                  Category
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-50 uppercase tracking-wider">
+                  agent
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-50 uppercase tracking-wider">
+                  Email
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-50 uppercase tracking-wider">
+                  Actions
+              </th>
+          </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        {% for lead in unassigned_leads %}
+        <tr>
+          <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex items-center">
+                  <div class="flex-shrink-0 h-10 w-10">
+                      <img class="h-10 w-10 rounded-full" src="https://i.pravatar.cc/150?img=1" alt="">
+                  </div>
+                  <div class="ml-4">
+                      <div class="text-sm font-medium text-gray-900">
+                          {{lead.first_name}} {{lead.last_name}}
+                      </div>
+                      
+                  </div>
+              </div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap ">
+              <div class="text-sm text-gray-900 text-end ">{{lead.age}}</div>
+              
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            {% if lead.category|lower == "converted" %}
+              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                {{lead.category}}
+            {% elif lead.category|lower == 'unconverted' %}
+            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+              {{lead.category}}
+            
+            {% elif lead.category|lower == 'contacted' %}
+              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                {{lead.category}}
+  
+             {% else %}
+             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+              {{lead.category}}
+               
+                
+            {% endif %}
+                  
+              </span>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              {{lead.agent}}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              jane.cooper@example.com
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap  text-sm font-medium">
+              <a href="{% url 'leads:lead-update' lead.pk %}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+              <a href="{% url 'leads:lead-delete' lead.pk %}" class="ml-2 text-red-600 hover:text-red-900">Delete</a>
+          </td>
+      </tr>
+        {% endfor %}
       
     {% endif %}
 
