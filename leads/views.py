@@ -153,7 +153,7 @@ class LeadUpdateView(OrganizerAndLoginRequiredMixin,generic.UpdateView):
     return queryset
 
   def get_success_url(self):
-    return reverse("leads:lead-detail",kwargs={"pk":self.object.pk})
+    return reverse("leads:lead-list")
   
 class LeadDeleteView(OrganizerAndLoginRequiredMixin,generic.DeleteView):
   template_name = "leads/lead-delete.html"

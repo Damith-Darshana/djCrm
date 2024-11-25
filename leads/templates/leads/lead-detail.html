@@ -28,20 +28,36 @@
 
       <div class="px-40">
         
-         <div>
-          <span>first Name</span>
+        <div class=" py-5 px-3 bg-purple-200 mt-2 mx-2 border-l-4 rounded-md border-l-purple-500 ">
+          <span class="text-purple-700 font-semibold ">first Name : </span>
           <span>{{lead.first_name}}</span>
 
          </div>
-         <div> 
-          <span>Last Name</span>
+         <div class=" py-5 px-3 bg-purple-200 mt-2 mx-2 border-l-4 rounded-md border-l-purple-500 ">
+          <span class="text-purple-700 font-semibold ">Last Name : </span>
           <span>{{lead.last_name}}</span>
+
          </div>
-         <div>Age</div>
-         <div>Telephone No :</div>
-         <div>E-Malil</div>
-         <div>Description</div>
-                     
+         <div class=" py-5 px-3 bg-purple-200 mt-2 mx-2 border-l-4 rounded-md border-l-purple-500 ">
+          <span class="text-purple-700 font-semibold ">Age : </span>
+          <span>{{lead.age}}</span>
+
+         </div>
+         <div class=" py-5 px-3 bg-purple-200 mt-2 mx-2 border-l-4 rounded-md border-l-purple-500 ">
+          <span class="text-purple-700 font-semibold ">Description : </span>
+          <span>{{lead.description}}</span>
+
+         </div>
+         <div class=" py-5 px-3 bg-purple-200 mt-2 mx-2 border-l-4 rounded-md border-l-purple-500 ">
+          <span class="text-purple-700 font-semibold ">E-Mail : </span>
+          <span>{{lead.email}}</span>
+
+         </div>
+         <div class=" py-5 px-3 bg-purple-200 mt-2 mx-2 border-l-4 rounded-md border-l-purple-500 ">
+          <span class="text-purple-700 font-semibold ">Telephone No : </span>
+          <span>{{lead.phone_number}}</span>
+
+         </div>
             
           <div class=" relative text-sm top-6 ">
             <a href="{% url 'leads:lead-list' %}"

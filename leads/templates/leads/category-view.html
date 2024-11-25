@@ -16,8 +16,8 @@
         <thead>
          
             <tr>
-              <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">Name</th>
-              <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Lead Count</th>
+              <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-purple-400 rounded-tl rounded-bl">Name</th>
+              <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-purple-400">Lead Count</th>
             
             </tr>
           
@@ -30,7 +30,7 @@
           
           </tr>
           {% for category in categoryList %}
-            <tr>
+            <tr class="">
               <td class="px-4 py-3"><a href="{% url 'leads:category-detail-view' category.pk %}">{{category.name}}</a></td>
               <td class="px-4 py-3">TODO </td>
             
